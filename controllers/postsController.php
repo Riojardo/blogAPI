@@ -27,33 +27,25 @@ class PostsController {
         }
     }
 
-    public function update_post( $title, $body, $author){
-        $update = Posts::update_posts($title, $body, $author);
+    public function update_post($id,$title,$author,$body){
+        $update = Posts::update_posts($id,$title, $body, $author);
     
         if ($update){
             echo "Update successful";
-            header("Location: http://localhost/blogAPI/index.php");
+            // header("Location: http://localhost/blogAPI/index.php");
             exit();
         } else {
             echo "Update failed";
         }
     }
-    public function delete_post() {
-        if (isset($_POST['id_delete'])) {
-            $post_id = intval($_POST['id_delete']);
-            echo $post_id;
-            print_r($_POST);
-            if (Posts::delete_posts($post_id)) {
-                echo "Post deleted successfully.";
-            } else {
-                echo "Failed to delete post.";
-            }
+
+    public function delete_post($id) {
+        $deleted = Posts::delete_posts($id); 
+        if ($deleted) {
+            echo "Post with ID $id deleted successfully.";
         } else {
-            
-            echo "ID is missing.";
-           
+            echo "Failed to delete post with ID $id.";
         }
     }
-    }
 
-
+}

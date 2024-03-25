@@ -19,23 +19,31 @@ $routes = [
         '/new' => fn() => (new PostsController())->add_post(),
     ],
     'PUT' => [
-        '/update' => function ($matches) {
+        '/update/(\d+)' => function ($matches) {
             $id = $matches[1] ?? null;
             if ($id !== null) {
                 parse_str(file_get_contents('php://input'), $_PUT);
                 $title = $_PUT['title'] ?? null;
                 $body = $_PUT['body'] ?? null;
                 $author = $_PUT['author'] ?? null;
-                (new PostsController())->update_post($title, $body, $author);
+                (new PostsController())->update_post($id,$title, $body, $author);
+                echo '404 Not';
             } else {
                 http_response_code(404);
-                echo '404 Not Found';
+                echo '404 Not lklklkFound';
             }
         },
     ],
     'DELETE' => [
-        '/delete' => fn() => 
-            (new PostsController())->delete_post(),
+            '/delete/(\d+)' => function ($matches) {
+                $id = $matches[1] ?? null;
+                if ($id !== null) {
+                    (new PostsController())->delete_post($id);
+                } else {
+                    http_response_code(404);
+                    echo '404 Not Found';
+                }
+            },
        
     ],
 ];
@@ -56,9 +64,5 @@ if ($route !== null) {
 
 } else {
     http_response_code(404);
-    echo '404 Nhjhjhjhjot Found';
-    echo $route . "router" ;
-    echo $pattern . "pattern" ;
-    echo  $path . "path" ;
 }
 

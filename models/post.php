@@ -51,15 +51,18 @@ public function __construct(string $title, string $body, string $author, string 
         return $stmt->execute();
     }
 
-    public static function update_posts($title,$author,$body) {
-        $pdo =connect_db();
-        $query = 'UPDATE posts Set title = :title , body =:body , author= :author WHERE id = :id';
-
-        $stmt =$pdo->prepare($query);
-
+    public static function update_posts($id, $title, $body, $author) {
+        $pdo = connect_db();
+        $query = 'UPDATE posts SET title = :title, body = :body, author = :author WHERE id = :id';
+    
+        $stmt = $pdo->prepare($query);
+    
         $stmt->bindParam(':title', $title, PDO::PARAM_STR);
         $stmt->bindParam(':body', $body, PDO::PARAM_STR);
         $stmt->bindParam(':author', $author, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    
+        // Execute the query and return the result
         return $stmt->execute();
     }
     
