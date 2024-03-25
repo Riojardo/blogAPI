@@ -30,10 +30,7 @@
 <h2>Delete Post</h2>
 <form method="POST" action="routes/api.php/delete">
     ID: <input type="text" name="id_delete"><br><br>
-    <input type="hidden" name="_method" value="DELETE">
     <input type="submit" name="delete" value="Delete Post">
-</form>
-</form>
 </form>
 
 </body>

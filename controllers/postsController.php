@@ -38,18 +38,22 @@ class PostsController {
             echo "Update failed";
         }
     }
-
     public function delete_post() {
         if (isset($_POST['id_delete'])) {
             $post_id = intval($_POST['id_delete']);
+            echo $post_id;
+            print_r($_POST);
             if (Posts::delete_posts($post_id)) {
                 echo "Post deleted successfully.";
             } else {
                 echo "Failed to delete post.";
             }
         } else {
+            
             echo "ID is missing.";
+           
         }
     }
-}
+    }
+
 

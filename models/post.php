@@ -66,7 +66,7 @@ public function __construct(string $title, string $body, string $author, string 
     public static function delete_posts($id){
         $pdo = connect_db();
 
-        $query = 'DELETE * FROM posts WHERE id = :id';
+        $query = 'DELETE FROM posts WHERE id = :id';
         $stmt =$pdo->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
