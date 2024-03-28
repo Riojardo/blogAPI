@@ -1,4 +1,4 @@
-# [BLogAPI](https://alice-becode.funquality.be/COGIP/home-body.html)
+# [BLogAPI]
 
 <h1 align="center">Hi 👋, this project is made by <a href=https://github.com/Riojardo">Robin Jardon</a></h1>
 # BlogApi: RESTful API for User Management
